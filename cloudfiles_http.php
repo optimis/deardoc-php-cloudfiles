@@ -1544,17 +1544,18 @@ class CF_Http
     
     function close()
     {
-        foreach ($this->connections as $cnx) {
+        foreach ($this->connections as $type => $cnx) {
             if (isset($cnx)) {
                 curl_close($cnx);
-                $this->connections[$cnx] = NULL;
             }
+            $this->connections[$type] = NULL;
         }
     }
+    
     private function create_array()
     {
-	$this->_text_list = explode("\n",rtrim($this->_return_list,"\n\x0B"));
-	return True;
+        $this->_text_list = explode("\n",rtrim($this->_return_list,"\n\x0B"));
+        return True;
     }
 
 }
