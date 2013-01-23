@@ -1547,14 +1547,22 @@ class CF_Http
         foreach ($this->connections as $cnx) {
             if (isset($cnx)) {
                 curl_close($cnx);
-                $this->connections[$cnx] = NULL;
             }
         }
+        $this->connections = array(
+        		"GET_CALL"  => NULL, # GET objects/containers/lists
+        		"PUT_OBJ"   => NULL, # PUT object
+        		"HEAD"      => NULL, # HEAD requests
+        		"PUT_CONT"  => NULL, # PUT container
+        		"DEL_POST"  => NULL, # DELETE containers/objects, POST objects
+        		"COPY"      => NULL, # COPY objects
+        );
     }
+    
     private function create_array()
     {
-	$this->_text_list = explode("\n",rtrim($this->_return_list,"\n\x0B"));
-	return True;
+        $this->_text_list = explode("\n",rtrim($this->_return_list,"\n\x0B"));
+        return True;
     }
 
 }
