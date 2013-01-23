@@ -1550,6 +1550,14 @@ class CF_Http
             }
             $this->connections[$type] = NULL;
         }
+        $this->connections = array(
+        		"GET_CALL"  => NULL, # GET objects/containers/lists
+        		"PUT_OBJ"   => NULL, # PUT object
+        		"HEAD"      => NULL, # HEAD requests
+        		"PUT_CONT"  => NULL, # PUT container
+        		"DEL_POST"  => NULL, # DELETE containers/objects, POST objects
+        		"COPY"      => NULL, # COPY objects
+        );
     }
     
     private function create_array()
